@@ -4,10 +4,52 @@ import WhiteCard from '../components/whiteCard'
 import BlackCard from '../components/blackCard'
 import WhiteSide from '../components/whiteSide'
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { a1Body, blackCard1 } from '../data'
-import { a2, map } from '../assets'
+import { a2, map, t1, t2, t3 } from '../assets'
 
 export default function Detail() {
+
+    const settings = {
+        centerMode: true,
+        centerPadding: "0",
+        slidesToShow: 3,
+        infinite: true,
+        speed: 300,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        focusOnSelect: false,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
+    };
+
+    const images = [
+        t1,
+        t2,
+        t3,
+    ];
 
     return (
         <div className='w-full bg-black2 font-unbound'>
@@ -52,6 +94,25 @@ export default function Detail() {
                 </div>
 
                 <div className="container container2 mx-auto py-10">
+
+                    <div>
+                        <h1 className='text-center text-white font-bold text-3xl xl:text-4xl mt-10'>Наши работы</h1>
+                        <p className='text-base font-normal text-gray3 text-center mt-5'>Мы с гордостью представляем наши работы, которые отражают<br /> нашу экспертность, творческий подход и результативность.</p>
+                        <div className="max-w-full mx-auto mt-10 overflow-hidden">
+                            <Slider {...settings}>
+                                {images.map((image, index) => (
+                                    <div key={index} className="p-2 outline-none border-none transform transition-transform duration-300 cursor-pointer ease-in-out">
+                                        <img
+                                            src={image}
+                                            alt={`Slide ${index}`}
+                                            className="w-full h-[600px] object-cover transition-transform duration-300 ease-in-out brightness-75 hover:brightness-100 focus:outline-none"
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+                        </div>
+                    </div>
+
                     <h1 className='text-center text-white font-bold text-3xl xl:text-4xl mt-10'>Тарифы</h1>
                     <p className='text-base font-normal text-gray3 text-center mt-5'>Мы рады предоставить вам информацию о наших текущих тарифных планах.</p>
 

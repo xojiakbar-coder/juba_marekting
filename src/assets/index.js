@@ -10,5 +10,8 @@ import v5 from './image/v5.png'
 import team2 from './image/team2.png'
 import map from './image/map.png'
 import a2 from './image/a2.jpeg'
+import t1 from './image/t1.png'
+import t2 from './image/t2.png'
+import t3 from './image/t3.png'
 
-export { mainLogo, teamImage, case1, a1, a2, v1, v2, v3, v4, v5, team2, map };
+export { mainLogo, teamImage, case1, a1, a2, v1, v2, v3, v4, v5, team2, map, t1, t2, t3 };

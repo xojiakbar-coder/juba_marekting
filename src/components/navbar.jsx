@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { mainLogo } from '../assets';
 import { HiMenuAlt4, HiX } from "react-icons/hi";
+import { IoIosArrowDown } from "react-icons/io";
+
+import { cards } from '../data';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const [isOpenNavbarService, setIsOpenNavbarService] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -33,14 +38,31 @@ export default function Navbar() {
                     <li>
                         <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Команда</a>
                     </li>
-                    <li>
-                        <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Услуги</a>
+                    <li className='relative flex flex-row items-center hover:text-yellow2 transition-all duration-300'>
+                        <button onClick={() => setIsOpenNavbarService(!isOpenNavbarService)}>
+                            Услуги
+                        </button>
+                        <IoIosArrowDown />
+                        {
+                            isOpenNavbarService && (
+                                <div className="absolute w-64 top-full left-0 mt-2 bg-white text-black px-5 py-3 shadow-lg rounded-md z-10">
+                                    <ul className="space-y-2">
+                                        {
+                                            cards.map((servise) => (
+                                                <li><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
+                            )
+                        }
                     </li>
                     <li>
                         <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Контакты</a>
                     </li>
                 </ul>
             </div>
+
 
             <div className='hidden md:flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6'>
                 <ul className='flex flex-row space-x-3'>
@@ -88,8 +110,24 @@ export default function Navbar() {
                         <li>
                             <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Команда</a>
                         </li>
-                        <li>
-                            <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Услуги</a>
+                        <li className='relative flex flex-row items-center hover:text-yellow2 transition-all duration-300'>
+                            <button onClick={() => setIsOpenNavbarService(!isOpenNavbarService)}>
+                                Услуги
+                            </button>
+                            <IoIosArrowDown />
+                            {
+                                isOpenNavbarService && (
+                                    <div className="absolute w-64 top-full left-0 mt-2 bg-white text-black px-5 py-3 shadow-lg rounded-md z-10">
+                                        <ul className="space-y-2">
+                                            {
+                                                cards.map((servise) => (
+                                                    <li><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                )
+                            }
                         </li>
                         <li>
                             <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Контакты</a>
