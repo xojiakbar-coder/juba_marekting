@@ -3,9 +3,7 @@ import { mainLogo } from '../assets';
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 
-import { cards } from '../data';
-
-export default function Navbar() {
+export default function Navbar({ servise_list }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const [isOpenNavbarService, setIsOpenNavbarService] = useState(false);
@@ -19,8 +17,8 @@ export default function Navbar() {
             <div className='flex flex-row items-center'>
                 <img className='w-20 sm:w-24' src={mainLogo} alt="Rasm yo'q" />
                 <div className='ms-2 text-md leading-5 text-yellow2 font-bold'>
-                    <p>Juba</p>
-                    <p>Marketing</p>
+                    <a href="/"><p>Juba</p>
+                        <p>Marketing</p></a>
                 </div>
             </div>
 
@@ -48,8 +46,8 @@ export default function Navbar() {
                                 <div className="absolute w-64 top-full left-0 mt-2 bg-white text-black px-5 py-3 shadow-lg rounded-md z-10">
                                     <ul className="space-y-2">
                                         {
-                                            cards.map((servise) => (
-                                                <li><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
+                                            servise_list?.map((servise) => (
+                                                <li key={servise?.id}><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
                                             ))
                                         }
                                     </ul>
@@ -73,7 +71,7 @@ export default function Navbar() {
                         <a className='font-bold' href="localhost:3000">Uz</a>
                     </li>
                 </ul>
-                <a className='border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href="tel:+998971432220">+998 97 143 22 20</a>
+                <a className='border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href="tel:+998712000321">+998 71 200 03 21</a>
             </div>
 
             {/* Hamburger menu */}
@@ -120,8 +118,8 @@ export default function Navbar() {
                                     <div className="absolute w-64 top-full left-0 mt-2 bg-white text-black px-5 py-3 shadow-lg rounded-md z-10">
                                         <ul className="space-y-2">
                                             {
-                                                cards.map((servise) => (
-                                                    <li><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
+                                                servise_list?.map((servise) => (
+                                                    <li key={servise?.id}><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
                                                 ))
                                             }
                                         </ul>

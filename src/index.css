@@ -13,3 +13,22 @@
     padding-right: 10px;
     overflow-x: hidden;
 }
+
+
+.flex2 {
+    display: flex;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-slide {
+    animation: slide 13s linear infinite;
+}
