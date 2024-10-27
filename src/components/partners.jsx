@@ -7,14 +7,15 @@ const Partners = ({ data }) => {
             <div className="container mx-auto py-10 relative">
                 <div className="flex2 flex items-center gap-6 whitespace-nowrap animate-slide">
                     {/* Rasmlar ketma-ket cheksiz chiqishi uchun ularni ikki marta chiqaramiz */}
-                    {data.concat(data, data).map((i, index) => (
+                    {data?.concat(data, data).map((i, index) => (
                         <img
                             key={index}
-                            className="min-w-[150px] sm:min-w-[200px] md:min-w-[250px] px-8 h-auto object-cover flex-shrink-0"
+                            className="min-w-[150px] sm:min-w-[200px] md:min-w-[250px] px-5 h-auto object-cover flex-shrink-0"
                             src={i.photo}
                             alt="Rasm topilmadi"
                         />
                     ))}
+
 
                 </div>
             </div>

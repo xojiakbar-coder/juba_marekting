@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react'
 import Navbar from '../components/navbar'
 import Button from '../components/button'
 import WhiteCard from '../components/whiteCard'
 import BlackCard from '../components/blackCard'
 import WhiteSide from '../components/whiteSide'
+import { baseURL } from '../api'
+import axios from 'axios'
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,6 +15,78 @@ import { a1Body, blackCard1 } from '../data'
 import { a2, map, t1, t2, t3 } from '../assets'
 
 export default function Detail() {
+
+    const lat = 41.2995
+    const long = 69.2401
+
+    const [serviseData, setServiseData] = useState(null)
+
+    const [sliderData, setSliderData] = useState(null)
+
+    const [keys, setKeys] = useState(null)
+
+    const [soloMain, setSoloMain] = useState(null)
+
+    const [statistics, setStatistics] = useState(null)
+
+    const [partner, setPartner] = useState(null)
+
+    const [teamData, setTeamData] = useState(null)
+
+    const [contact, setContact] = useState(null)
+
+    const [name, setName] = useState('')
+    const [tel, setTel] = useState('')
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    async function getData() {
+        try {
+            const getService = await axios.get(`${baseURL}/service/`)
+            setServiseData(getService.data)
+            console.log("Servis keldi")
+
+            const getSlider = await axios.get(`${baseURL}/slider/`)
+            setSliderData(getSlider.data)
+            console.log("Sliderlar keldi")
+
+            const getKeys = await axios.get(`${baseURL}/keys/`)
+            setKeys(getKeys.data)
+            console.log("Keyslar keldi")
+
+            const getSolo = await axios.get(`${baseURL}/solo-main/`)
+            setSoloMain(getSolo.data)
+            console.log("solo-main keldi")
+
+            const getStatistics = await axios.get(`${baseURL}/result/`)
+            setStatistics(getStatistics.data)
+            console.log("Statistikalar keldi")
+
+            const getPartner = await axios.get(`${baseURL}/client-photo/`)
+            setPartner(getPartner)
+            console.log("Partners keldi")
+
+            const getTeamData = await axios.get(`${baseURL}/team-photo/`)
+            setTeamData(getTeamData)
+            console.log("Team data keldi")
+
+            const getContact = await axios.get(`${baseURL}/our-contact/`)
+            setContact(getContact.data[0])
+
+            console.log("Contact uchun datalar keldi")
+
+            console.log("Hamma ma'lumotlar ko'rsatish uchun tayyor !")
+
+            setIsLoading(false)
+        } catch (error) {
+            console.log("Xato:", error)
+        }
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
 
     const settings = {
         centerMode: true,
@@ -55,7 +130,7 @@ export default function Detail() {
         <div className='w-full bg-black2 font-unbound'>
             <div>
                 <div className="container mx-auto pb-20">
-                    <Navbar />
+                    <Navbar servise_list={serviseData} contact={contact} />
 
                     <div className='container2'>
                         <div className='flex flex-col space-y-2 lg:w-1/2 mt-24 w-full'>
@@ -128,7 +203,10 @@ export default function Detail() {
             </div>
 
 
-            <div className='h-20 bg-black2'></div>
+            <div className='h-20 bg-black2'>
+                <h1 className='text-center text-white font-bold text-3xl xl:text-4xl mt-10'>Принципы в работе</h1>
+                <div></div>
+            </div>
 
             <div className='w-full bg-white py-20 justify-center'>
                 <h2 className='font-bold text-4xl text-center'>Контакты</h2>

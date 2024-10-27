@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { mainLogo } from '../assets';
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
-export default function Navbar({ servise_list }) {
+export default function Navbar({ servise_list, contact }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const [isOpenNavbarService, setIsOpenNavbarService] = useState(false);
@@ -47,7 +48,7 @@ export default function Navbar({ servise_list }) {
                                     <ul className="space-y-2">
                                         {
                                             servise_list?.map((servise) => (
-                                                <li key={servise?.id}><a className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' href="localhost:3000">{servise.title}</a></li>
+                                                <li key={servise?.id}><Link className='text-sm hover:text-yellow2 transition-all duration-300 py-1 font-normal text-black4' to={`/${servise.id}`}>{servise.title}</Link></li>
                                             ))
                                         }
                                     </ul>
@@ -71,7 +72,7 @@ export default function Navbar({ servise_list }) {
                         <a className='font-bold' href="localhost:3000">Uz</a>
                     </li>
                 </ul>
-                <a className='border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href="tel:+998712000321">+998 71 200 03 21</a>
+                <a className='border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href={`tel:${contact?.phone_number}`}>{contact?.phone_number?.length === 13 ? `${contact?.phone_number.slice(0, 4)} ${contact?.phone_number.slice(4, 6)} ${contact?.phone_number.slice(6, 9)} ${contact?.phone_number.slice(9, 11)} ${contact?.phone_number.slice(11, 13)}` : contact?.phone_number}</a>
             </div>
 
             {/* Hamburger menu */}
@@ -131,7 +132,7 @@ export default function Navbar({ servise_list }) {
                             <a className='hover:text-yellow2 transition-all duration-300' href="localhost:3000">Контакты</a>
                         </li>
                     </ul>
-                    <a className='mt-4 text-center border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href="tel:+998971432220">+998 97 143 22 20</a>
+                    <a className='mt-4 text-center border border-solid px-5 py-3 border-[#faaf0a] text-yellow2 rounded-xl hover:bg-yellow2 hover:text-white2 transition-all duration-300 font-bold' href={`tel:${contact?.phone_number}`}>{contact?.phone_number?.length === 13 ? `${contact?.phone_number.slice(0, 4)} ${contact?.phone_number.slice(4, 6)} ${contact?.phone_number.slice(6, 9)} ${contact?.phone_number.slice(9, 11)} ${contact?.phone_number.slice(11, 13)}` : contact?.phone_number}</a>
                 </div>
             )}
             {/* Hamburger menu */}
