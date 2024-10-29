@@ -16,29 +16,11 @@ import { a2, map, t1, t2, t3 } from '../assets'
 
 export default function Detail() {
 
-    const lat = 41.2995
-    const long = 69.2401
 
     const [serviseData, setServiseData] = useState(null)
 
-    const [sliderData, setSliderData] = useState(null)
-
-    const [keys, setKeys] = useState(null)
-
-    const [soloMain, setSoloMain] = useState(null)
-
-    const [statistics, setStatistics] = useState(null)
-
-    const [partner, setPartner] = useState(null)
-
-    const [teamData, setTeamData] = useState(null)
-
     const [contact, setContact] = useState(null)
 
-    const [name, setName] = useState('')
-    const [tel, setTel] = useState('')
-
-    const [isLoading, setIsLoading] = useState(true)
 
     async function getData() {
         try {
