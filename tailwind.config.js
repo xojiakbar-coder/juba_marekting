@@ -1,23 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sm: "640px",
+        md: "790px",
+        lg: "1024px",
+        xl: "1160px",
+        "2xl": "1536px",
+        custom: "1600px",
+        xxl: "1600px",
+      },
       colors: {
-        'yellow2': '#faaf0a',
-        'black2': '#141414',
-        'black3': '#1a1a1a',
-        'black4': '#828282',
-        'white2': '#f4f4f4',
-        'gray2': '#333333',
-        'gray3': '#bdbdbd',
+        light: "var(--lightColor)",
+        dark: "var(--darkColor)",
+        yellow: "var(--yellowColor)",
+        "gray-color": "var(--grayColor)",
+        "dark-text": "var(--darkTextColor)",
+        "hover-card-bg": "var(--hoverCardBg)",
       },
       fontFamily: {
-        unbound: ['Unbounded', 'sans-serif']
-      }
-    }
+        "body-font": "var(--bodyFont)",
+      },
+      backgroundImage: {
+        "home-page-bg-image": "",
+      },
+    },
   },
   plugins: [],
-}
+};

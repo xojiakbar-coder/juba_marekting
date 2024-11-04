@@ -1,34 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
-
 * {
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-.container2 {
-    padding-left: 10px;
-    padding-right: 10px;
-    overflow-x: hidden;
+:root {
+  --grayColor: #bdbdbd;
+  --yellowColor: #faaf0a;
+  --darkColor: rgb(26, 26, 26);
+  --darkTextColor: rgb(20, 20, 20);
+  --hoverCardBg: rgb(32, 32, 32);
+  --lightColor: rgb(255, 255, 255);
+  --bodyFont: "Unbounded", sans-serif;
 }
 
-
-.flex2 {
-    display: flex;
+body {
+  font-family: var(--bodyFont);
+  background-color: var(--darkTextColor);
 }
 
 @keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    100% {
-        transform: translateX(-50%);
-    }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-slide {
-    animation: slide 13s linear infinite;
+  animation: slide 13s linear infinite;
 }

@@ -1,4 +1,3 @@
+const ENDPOINTURL = "https://husenkomilov2.pythonanywhere.com";
 
-const baseURL = 'https://husenkomilov2.pythonanywhere.com'
-
-export { baseURL }
+export default ENDPOINTURL;
