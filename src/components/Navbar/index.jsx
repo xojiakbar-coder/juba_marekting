@@ -2,33 +2,28 @@ import Logo from "./Logo";
 import Body from "./Body";
 import Lang from "./Lang";
 import Items from "./Items";
-import { message } from "antd";
 import useSize from "../../hooks/useSize";
 import Button from "../Generic/Button/Button";
+import useMessages from "../../hooks/useMessage";
 
 const Navbar = () => {
   const { width } = useSize();
   const textToCopy = `+998 97 143 22 20`;
-  const [messageApi, contextHolder] = message.useMessage();
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Juba phone number copied to clipboard!",
-    });
-  };
-  const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "Juba phone number did not copied",
-    });
-  };
-
+  const { contextHolder, showMessage } = useMessages();
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(textToCopy);
-      success();
+      showMessage({
+        type: "success",
+        content: "Juba phone number copied",
+        duration: 2.5,
+      });
     } catch (err) {
-      error();
+      showMessage({
+        type: "error",
+        content: "Xatolik yuz berdi",
+        duration: 2.5,
+      });
     }
   };
 

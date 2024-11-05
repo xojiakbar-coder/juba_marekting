@@ -8,18 +8,19 @@ const Button = ({
   hover = false,
   ...args
 }) => {
-  const outerStyle = `min-h-[60px] h-[60px] rounded-[15px] font-[700] px-[33px] py-[19px] cursor-pointer ${
+  const hoverTransition = `transition duration-[180] ease-in`;
+  const outerStyle = `flex items-center min-h-[60px] h-[60px] rounded-[15px] font-[700] px-[33px] py-[19px] cursor-pointer ${
     hover && "hover:bg-hover-card-bg transition duration-[180] ease-in"
   }`;
 
   const getButtonStyle = () => {
     switch (variant) {
       case "primary":
-        return "bg-yellow text-dark-text";
+        return `bg-yellow border-[3px] border-yellow text-dark-text hover:border-yellow hover:bg-transparent hover:text-light ${hoverTransition}`;
       case "outline":
         return "border-[1px] border-yellow text-yellow bg-transparent";
       case "secondary":
-        return "bg-light text-dark-text";
+        return `bg-light text-dark-text border-[3px] hover:bg-transparent hover:text-light ${hoverTransition}`;
       default:
         return "border-[1px] border-yellow text-yellow bg-transparent";
     }

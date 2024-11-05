@@ -9,6 +9,7 @@ const HomePage = () => {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
   };
+
   return (
     <div
       style={backgroundImage}

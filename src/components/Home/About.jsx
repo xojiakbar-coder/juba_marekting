@@ -2,7 +2,9 @@ import React from "react";
 import aboutUS from "../../assets/images/home/about-us.svg";
 import DataCard from "../Generic/Card/Card";
 
-const About = () => {
+const About = ({ data }) => {
+  console.log(data);
+
   const aboutUSTextStyle = `text-gray-color font-[400] text-[16px]`;
   return (
     <div className="mt-[150px] w-full bg-light py-[150px] px-[5%]">
