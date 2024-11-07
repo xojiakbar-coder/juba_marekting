@@ -1,11 +1,15 @@
 import Title from "../Generic/Title/Title";
 import Button from "../Generic/Button/Button";
-import homePageImage from "../../assets/images/home/home-page.png";
+import homePageImage from "../../assets/images/home/home.png";
 
-const HomePage = () => {
+const HomePage = ({ data }) => {
+  const { title, short_description } = data[0];
+
   const backgroundImage = {
     backgroundImage: `url(${homePageImage})`,
+    opacity: "0.9",
     backgroundSize: "cover",
+    backgroundColor: "#000",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
   };
@@ -13,18 +17,15 @@ const HomePage = () => {
   return (
     <div
       style={backgroundImage}
-      className="w-full min-h-[600px] rounded-[30px] h-[600px] pt-[160px] pl-[100px]"
+      className="flex flex-col w-full min-h-[600px] gap-[20px] rounded-[30px] h-[600px] pt-[160px] pl-[100px]"
     >
       <div>
-        <Title variant="primary">
-          Маркетинговое
-          <Title variant="secondary">Агенство в Ташкенте</Title>
+        <Title variant="secondary" className="w-[60%]">
+          {title && title}
         </Title>
       </div>
-      <p className="text-light min-w-[700px] w-[700px] h-[60px] min-h-[60px]">
-        Ваш ключ к успеху в мире маркетинга в Ташкенте. Мы предлагаем
-        инновационные стратегии и решения для вашего бизнеса. Обратитесь к нам
-        сегодня и достигните новых высот
+      <p className="text-light min-w-[50%] w-[50%] h-[60px] min-h-[60px] leading-[28px]">
+        {short_description && short_description}
       </p>
       <div className="flex flex-row gap-x-[20px] mt-[30px]">
         <Button variant="primary">Обсудить проект</Button>

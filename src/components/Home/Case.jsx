@@ -4,8 +4,6 @@ import PhotoCard from "../Generic/Card/PhotoCard";
 import photoCard_data from "../../utils/photoCard";
 
 const Case = ({ data }) => {
-  console.log(data);
-
   return (
     <div className="mt-[150px] text-center">
       <Title variant="title">Наши кейсы</Title>

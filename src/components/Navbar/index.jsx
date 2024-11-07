@@ -35,15 +35,16 @@ const Navbar = () => {
         {width > 1024 ? <Items /> : null}
         <div className="flex flex-row justify-between gap-[30px]">
           <Lang />
-          <Button
-            variant="outline"
-            hover={true}
-            title="click for copy"
-            onClick={handleCopy}
-          >
-            {textToCopy}
-          </Button>
-          <a href="#"></a>
+          <a href="https://t.me/JubaMarketing" target="_blank">
+            <Button
+              variant="outline"
+              hover={true}
+              title="click for copy"
+              onClick={handleCopy}
+            >
+              {textToCopy}
+            </Button>
+          </a>
         </div>
       </div>
       <Body />
