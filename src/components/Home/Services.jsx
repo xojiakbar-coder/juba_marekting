@@ -5,7 +5,7 @@ import DataCard from "../Generic/Card/Card";
 
 const Services = ({ data }) => {
   return (
-    <div className="flex flex-col mt-[150px] w-full">
+    <div className="flex flex-col mt-[100px] w-full">
       <div className="w-full">
         <Title variant="title">Маркетинговые услуги в Ташкенте</Title>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 custom:grid-cols-4 xxl:grid-cols-4 gap-[20px] mt-[50px]">

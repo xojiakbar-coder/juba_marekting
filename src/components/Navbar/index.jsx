@@ -32,16 +32,11 @@ const Navbar = () => {
       {contextHolder}
       <div className="flex items-center justify-between px-[5%]">
         <Logo />
-        {width > 1024 ? <Items /> : null}
+        {/* {width > 1024 ? <Items /> : null} */}
         <div className="flex flex-row justify-between gap-[30px]">
           <Lang />
           <a href="https://t.me/JubaMarketing" target="_blank">
-            <Button
-              variant="outline"
-              hover={true}
-              title="click for copy"
-              onClick={handleCopy}
-            >
+            <Button variant="outline" hover={true} onClick={handleCopy}>
               {textToCopy}
             </Button>
           </a>

@@ -1,15 +1,15 @@
 import React from "react";
 import OurResault from "./Resault";
-import aboutUS from "../../assets/images/home/about-us.svg";
 import Title from "../Generic/Title/Title";
+import aboutUS from "../../assets/images/home/about-us.svg";
 
 const About = ({ data }) => {
   const dataOfAbout = data.soloMain?.[0];
   const ourResault = data.ourResault;
 
   return (
-    <div className="mt-[150px] w-full bg-light py-[150px] px-[5%]">
-      <div className="flex flex-col justify-center items-center w-full">
+    <div className="mt-[150px] w-full bg-light py-[100px] px-[5%] h-max">
+      <div className="flex flex-col justify-center items-center w-full h-max">
         <Title variant="section-name">
           JUBA - маркетинговое агентство в Ташкенте
         </Title>
@@ -27,7 +27,7 @@ const About = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="w-full mt-[100px]">
+        <div className="w-full mt-[100px] h-max">
           <OurResault data={ourResault} />
         </div>
       </div>

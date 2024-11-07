@@ -2,6 +2,7 @@ import axios from "axios";
 import About from "./About";
 import Service from "./Services";
 import HomePage from "./HomePage";
+import { Element } from "react-scroll";
 import { Suspense, useEffect, useState } from "react";
 const ENDPOINTURL = import.meta.env.VITE_REACT_APP_API_URL;
 
@@ -60,12 +61,25 @@ const Home = () => {
   if (loading) return <div>Loading...</div>;
 
   const components = [
-    { id: 1, Component: HomePage, data: data.slider, padding: true },
-    { id: 2, Component: Service, data: data.service, padding: true },
+    {
+      id: 1,
+      Component: HomePage,
+      data: data.slider,
+      padding: true,
+      path: "home",
+    },
+    {
+      id: 2,
+      Component: Service,
+      data: data.service,
+      padding: true,
+      path: "sevice",
+    },
     {
       id: 3,
       Component: About,
       data: { soloMain: data.soloMain, ourResault: data.ourResault },
+      path: "about",
       padding: false,
     },
   ];
@@ -73,10 +87,14 @@ const Home = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="w-full">
-        {components.map(({ id, Component, data, padding }) => (
-          <div key={id} className={padding ? "px-[5%] py-[25px]" : ""}>
+        {components.map(({ id, Component, data, padding, path }) => (
+          <Element
+            key={id}
+            className={padding ? "px-[5%] py-[25px]" : ""}
+            name={path}
+          >
             <Component data={data} />
-          </div>
+          </Element>
         ))}
       </div>
     </Suspense>

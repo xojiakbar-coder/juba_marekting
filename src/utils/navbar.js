@@ -7,7 +7,7 @@ const navbar_itmes_data = [
   {
     id: `2`,
     title: "О компании",
-    path: "/О-компании",
+    path: "about",
   },
   {
     id: `3`,
