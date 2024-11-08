@@ -5,10 +5,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Root = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route element={<Navbar />}>
-          <Route path="/" element={<Home />} />
-        </Route>
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

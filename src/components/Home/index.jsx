@@ -1,10 +1,15 @@
 import axios from "axios";
+import Team from "./Team";
 import About from "./About";
+import HomePage from "./Home";
+import Footer from "../Footer";
+import Contact from "./Contact";
+import Clients from "./Clients";
 import Service from "./Services";
-import HomePage from "./HomePage";
 import { Element } from "react-scroll";
-import { Suspense, useEffect, useState } from "react";
+import { Riple } from "react-loading-indicators";
 const ENDPOINTURL = import.meta.env.VITE_REACT_APP_API_URL;
+import { Component, Suspense, useEffect, useState } from "react";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -13,8 +18,8 @@ const Home = () => {
     service: null,
     soloMain: null,
     ourResault: null,
-    clientPhoto: null,
-    teamPhoto: null,
+    clients: null,
+    team: null,
     ourContact: null,
   });
 
@@ -26,8 +31,8 @@ const Home = () => {
           serviceResponse,
           soloMainResponse,
           ourResaultResponse,
-          clientPhotoResponse,
-          teamPhotoResponse,
+          clientsResponse,
+          teamResponse,
           ourContactResponse,
         ] = await Promise.all([
           axios.get(`${ENDPOINTURL}/slider/`),
@@ -44,8 +49,8 @@ const Home = () => {
           service: serviceResponse.data,
           soloMain: soloMainResponse.data,
           ourResault: ourResaultResponse.data,
-          clientPhoto: clientPhotoResponse.data,
-          teamPhoto: teamPhotoResponse.data,
+          clients: clientsResponse.data,
+          team: teamResponse.data,
           ourContact: ourContactResponse.data,
         });
       } catch (error) {
@@ -58,7 +63,12 @@ const Home = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="w-full h-screen border flex justify-center items-center scale-150">
+        <Riple color="#faaf0a" size="medium" text="" textColor="" />;
+      </div>
+    );
 
   const components = [
     {
@@ -66,26 +76,49 @@ const Home = () => {
       Component: HomePage,
       data: data.slider,
       padding: true,
-      path: "home",
+      path: "/",
     },
     {
       id: 2,
       Component: Service,
       data: data.service,
       padding: true,
-      path: "sevice",
+      path: "/sevice",
     },
     {
       id: 3,
       Component: About,
       data: { soloMain: data.soloMain, ourResault: data.ourResault },
-      path: "about",
+      path: "/about",
       padding: false,
+    },
+    {
+      id: 4,
+      Component: Clients,
+      data: data.clients,
+      path: "/clients",
+      padding: false,
+    },
+    {
+      id: 5,
+      Component: Team,
+      data: data.team,
+      padding: false,
+      path: "/our-team",
+    },
+    {
+      id: 6,
+      Component: Contact,
+      data: data.ourContact,
+      padding: false,
+      path: "/contact",
     },
   ];
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={<Riple color="#faaf0a" size="medium" text="" textColor="" />}
+    >
       <div className="w-full">
         {components.map(({ id, Component, data, padding, path }) => (
           <Element
@@ -97,6 +130,7 @@ const Home = () => {
           </Element>
         ))}
       </div>
+      <Footer />
     </Suspense>
   );
 };

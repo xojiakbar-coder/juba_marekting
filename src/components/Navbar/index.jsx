@@ -2,45 +2,56 @@ import Logo from "./Logo";
 import Body from "./Body";
 import Lang from "./Lang";
 import Items from "./Items";
+import { useState } from "react";
+import NavbarDrawer from "./Drawer";
 import useSize from "../../hooks/useSize";
 import Button from "../Generic/Button/Button";
-import useMessages from "../../hooks/useMessage";
+import menuIcon from "../../assets/icons/menu.svg";
 
 const Navbar = () => {
   const { width } = useSize();
-  const textToCopy = `+998 97 143 22 20`;
-  const { contextHolder, showMessage } = useMessages();
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(textToCopy);
-      showMessage({
-        type: "success",
-        content: "Juba phone number copied",
-        duration: 2.5,
-      });
-    } catch (err) {
-      showMessage({
-        type: "error",
-        content: "Xatolik yuz berdi",
-        duration: 2.5,
-      });
-    }
+  const textToCopy = `+998 90 047 22 20`;
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
   };
 
   return (
-    <div className="flex flex-col mt-[25px] w-full relative z-[999]">
-      {contextHolder}
-      <div className="flex items-center justify-between px-[5%]">
+    <div className="flex flex-col mt-[25px] w-full relative z-[999] sticky top-0 bg-dark-text">
+      <div
+        className={`flex items-center justify-between ${
+          width > 1220 ? "px-[5%]" : "px-[20px]"
+        } `}
+      >
         <Logo />
-        {/* {width > 1024 ? <Items /> : null} */}
-        <div className="flex flex-row justify-between gap-[30px]">
-          <Lang />
-          <a href="https://t.me/JubaMarketing" target="_blank">
-            <Button variant="outline" hover={true} onClick={handleCopy}>
-              {textToCopy}
-            </Button>
-          </a>
-        </div>
+        {width > 1020 ? <Items /> : null}
+        {width > 730 && (
+          <div className="flex flex-row justify-between gap-[30px]">
+            <Lang />
+            <a href="https://t.me/JubaMarketing" target="_blank">
+              <Button variant="outline" hover={true}>
+                {textToCopy}
+              </Button>
+            </a>
+          </div>
+        )}
+
+        {width <= 1020 && (
+          <div>
+            <div
+              className="select-none cursor-pointer rounded-full bg-light p-[21px]"
+              onClick={toggleDrawer}
+            >
+              <img
+                src={menuIcon}
+                alt="menu icon not found"
+                className="w-[24px] h-[24px] select-none font-mont transition duration-105 ease-in-out"
+              />
+            </div>
+          </div>
+        )}
+        <NavbarDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
       </div>
       <Body />
     </div>

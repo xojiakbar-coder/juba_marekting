@@ -8,7 +8,7 @@ const Title = ({ children, variant, className = "" }) => {
       case "primary":
         return "text-yellow text-[56px] font-[900]";
       case "secondary":
-        return "text-light text-[56px] font-[900]";
+        return "text-light xl:text-[56px] font-[900] md:text-[46px] sm:text-[40px] text-[38px]";
       case "title":
         return "text-[36px] font-[700] text-light text-center";
       case "section-name":

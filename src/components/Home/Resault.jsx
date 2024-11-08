@@ -8,7 +8,7 @@ const OurResault = ({ data }) => {
       <Title variant="section-name" className="text-center">
         Наши результаты в цифрах
       </Title>
-      <div className="grid grid-cols-3 grid-rows-[260px] w-full justify-between gap-[30px] mt-[50px] h-max">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] mt-[50px] w-full">
         {data &&
           data?.map(({ id, title, result }) => {
             return (

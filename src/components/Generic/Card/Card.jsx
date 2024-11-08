@@ -7,7 +7,7 @@ const DataCard = ({ title, text, href, type = "data", res, resText }) => {
       <div
         className={`${
           type === "res"
-            ? "text-[56px] font-[700]"
+            ? "text-[56px] font-[700] md:text-[45px]"
             : "text-[24px] font-[700] leading-[100%]"
         } text-yellow font-body-font`}
       >
@@ -15,7 +15,7 @@ const DataCard = ({ title, text, href, type = "data", res, resText }) => {
       </div>
       <p
         className={`my-[20px] text-light font-[400] font-body-font leading-[26px] ${
-          resText && "capitalize text-[24px] leading-[36px]"
+          resText && "capitalize text-[24px] leading-[36px] md:text-[20px]"
         }`}
       >
         {resText ? resText : text}

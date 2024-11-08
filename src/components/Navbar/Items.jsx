@@ -1,47 +1,66 @@
+import { Dropdown, message } from "antd";
+import navbar_items_data from "../../utils/navbar";
 import { Link } from "react-scroll";
-import navbar_itmes_data from "../../utils/navbar";
-import { useState } from "react";
+import useSize from "../../hooks/useSize";
 
-const Items = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleMenuClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
-  };
-
+const Items = ({ dir = "row", w = "full", onClose }) => {
+  const { width } = useSize();
   return (
-    <div className="flex flex-col items-center h-max text-white">
-      <div className="relative w-full">
-        <button
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-          className="w-full bg-white text-black text-lg font-medium py-2 px-4 rounded-md"
-        >
-          Hover to open dropdown
-        </button>
+    <div className={`flex flex-${dir} gap-x-[24px] items-center`}>
+      {navbar_items_data.map((item) => {
+        const { id, title, path, children } = item;
+        const itemPath = id === "5" ? "" : path;
 
-        <div
-          className={`absolute left-0 top-12 w-full bg-white shadow-lg rounded-md p-4 transition-opacity duration-200 ${
-            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-        >
-          <div>
-            <div className="px-4 py-2 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-800 hover:text-white transition duration-200">
-              Dropdown Content
-            </div>
-            <div className="px-4 py-2 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-800 hover:text-white transition duration-200">
-              Dropdown Content
-            </div>
-            <div className="px-4 py-2 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-800 hover:text-white transition duration-200">
-              Dropdown Content
-            </div>
-            <div className="px-4 py-2 border border-gray-400 rounded-md cursor-pointer hover:bg-gray-800 hover:text-white transition duration-200">
-              Dropdown Content
-            </div>
-          </div>
-        </div>
-      </div>
+        if (children?.length) {
+          const dropdownItems = children.map((child) => ({
+            label: (
+              <Link
+                to={child.path}
+                smooth={true}
+                duration={600}
+                className="hover:text-yellow text-light cursor-pointer"
+              >
+                {child.title}
+              </Link>
+            ),
+            key: child.id,
+          }));
+
+          return (
+            <Dropdown
+              key={id}
+              trigger={["hover"]}
+              menu={{ items: dropdownItems }}
+              arrow={true}
+            >
+              <div className="flex items-center gap-1 cursor-pointer text-light hover:text-yellow">
+                <Link
+                  to={itemPath.startsWith("/") ? itemPath : `/${itemPath}`}
+                  smooth={true}
+                  duration={600}
+                  className="font-body-font font-[400] text-[16px] transition duration-150 ease-out cursor-pointer"
+                >
+                  {title}
+                </Link>
+              </div>
+            </Dropdown>
+          );
+        }
+
+        return (
+          <Link
+            key={id}
+            to={itemPath.startsWith("/") ? itemPath : `/${itemPath}`}
+            smooth={true}
+            duration={800}
+            className={`font-body-font font-[400] ${
+              width <= 1390 ? "text-[14px]" : "text-[16px]"
+            } text-[16px] hover:text-yellow select-none transition duration-150 ease-out text-light cursor-pointer`}
+          >
+            {title}
+          </Link>
+        );
+      })}
     </div>
   );
 };
